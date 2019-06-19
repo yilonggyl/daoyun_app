@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>商品列表
+      </ion-button>
+    </ion-buttons>
+    <ion-title>商品详情</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="presentPopover($event)">
+        <ion-icon slot="icon-only" name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <form (ngSubmit)="onSave()" #productForm="ngForm" style="width: 100%;">
+    <ion-list lines="full">
+      <ion-item>
+        <ion-thumbnail style="margin: 10px 10px;" *ngFor="let c of product.images">
+          <img src="{{c}}" />
+        </ion-thumbnail>
+        <ion-thumbnail slot="start" style="margin: 10px 0;">
+          <img src="assets/img/supplier_icon.png">
+        </ion-thumbnail>
+      </ion-item>
+      <ion-item>
+        <ion-text style="margin: 10px 30px 10px 10px;width: 50px;">名称</ion-text>
+        <ion-note slot="end">{{product.name}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-text style="margin: 10px 30px 10px 10px;width: 50px;">分类</ion-text>
+        <ion-note slot="end">{{product.categoryName}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-text style="margin: 10px 30px 10px 10px;width: 50px;">条码</ion-text>
+        <ion-note slot="end">{{product.barcode}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-text style="margin: 10px 30px 10px 10px;width: 50px;">进价</ion-text>
+        <ion-buttons slot="end" (click)="validate()">
+          <ion-button fill="outline" color="primary" size="small" *ngIf="!isValidate">查看进价</ion-button>
+          <ion-note slot="end" *ngIf="isValidate">￥{{product.bid | number:'1.2-2'}}</ion-note>
+        </ion-buttons>
+      </ion-item>
+      <ion-item>
+        <ion-text style="margin: 10px 30px 10px 10px;width: 50px;">售价</ion-text>
+        <ion-note slot="end">￥{{product.price | number:'1.2-2'}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-text style="margin: 10px 30px 10px 10px;width: 50px;">规格</ion-text>
+        <ion-note slot="end">{{product.spec}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-text style="margin: 10px 30px 10px 10px;width: 50px;">库存</ion-text>
+        <ion-note slot="end">{{product.stock}}</ion-note>
+      </ion-item>
+    </ion-list>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" color="primary"  routerLink="/inOutStock" [queryParams]="{'id': id}">出入库</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="full" fill="outline" color="primary" (click)="onPresentActionSheet()">分享</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

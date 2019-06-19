@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>返回
+      </ion-button>
+    </ion-buttons>
+    <ion-title>签到</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-list lines="full" color="light">
+    <ion-item>
+      <ion-col>
+        <ion-button expand="full" color="primary" (click)="signIn()">开始签到</ion-button>
+      </ion-col>
+    </ion-item>
+    <ion-item color="light">历史签到记录</ion-item>
+    <ion-item *ngFor="let s of signInRecord">
+      <ion-col size="9">
+        <ion-row>{{s.date}} {{s.week}} 签到</ion-row>
+        <ion-row>
+          <ion-text color="medium">{{s.time}}</ion-text>
+        </ion-row>
+      </ion-col>
+      <ion-note slot="end">{{s.status}}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

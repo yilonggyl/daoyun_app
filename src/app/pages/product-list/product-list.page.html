@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>商品列表</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-toolbar color="light">
+    <ion-searchbar placeholder="请输入商品名称、拼音、数字"
+                   [(ngModel)]="queryTerm"
+                   showCancelButton="false"
+                   (ionInput)="onInput($event)" >
+    </ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button fill="outline" color="primary" size="small">商品盘点</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="下拉可以刷新"
+            refreshingSpinner="circles"
+            refreshingText="正在加载...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-grid *ngIf="totalCount == 0">
+    <img src="assets/img/commodity_no.png" alt="">
+    <ion-item lines="none"><ion-text color="medium">您还没有任何商品信息</ion-text></ion-item>
+    <ion-item lines="none"><ion-text color="medium">您可以</ion-text></ion-item>
+    <ion-button type="button" expand="full" color="primary" href="/addProduct">新增商品</ion-button>
+  </ion-grid>
+  <ion-grid *ngIf="totalCount > 0" color="light" no-padding>
+    <ion-item>
+      <ion-text>总正库存 {{stock}} 件，总成本 {{price | number:'1.2-2'}} 元</ion-text>
+    </ion-item>
+    <ion-item *ngFor="let p of product" no-padding routerLink="/productDesc" [queryParams]="{id: p.id}">
+      <ion-col size="2">
+        <img src="assets/img/c_goodspicture.png" alt="">
+      </ion-col>
+      <ion-col size="9">
+        <ion-row>{{p.name}}</ion-row>
+        <ion-row><ion-text color="danger">￥{{p.price | number:'1.2-2'}}</ion-text></ion-row>
+        <ion-row>
+          <ion-text color="medium">条码:{{p.barcode}}</ion-text>
+          <ion-text padding-start="5px" color="medium">库存:{{p.stock}}</ion-text>
+        </ion-row>
+      </ion-col>
+      <ion-col size="1">
+            <ion-icon name="share"></ion-icon>
+      </ion-col>
+    </ion-item>
+  </ion-grid>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="onInfinite($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多商品数据...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

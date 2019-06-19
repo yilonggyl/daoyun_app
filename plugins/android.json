@@ -1,0 +1,52 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "cordova-plugin-telerik-imagepicker": {
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "cordova-plugin-wechat": {
+      "WECHATAPPID": "wxfae339f80ff001da",
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "cordova-plugin-qqsdk": {
+      "QQ_APP_ID": "101540966",
+      "PACKAGE_NAME": "com.gyl.syzj"
+    },
+    "cordova-sms-plugin": {
+      "PACKAGE_NAME": "com.gyl.syzj"
+    }
+  },
+  "dependent_plugins": {}
+}

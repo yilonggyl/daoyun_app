@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>供应商列表</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="presentAlertPrompt()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid no-padding>
+    <ion-list lines="full" color="light">
+      <ion-item color="light">请选择供应商</ion-item>
+      <ion-item detail *ngFor="let s of supplier" (click)="onSelectSupplier(s)">
+          <ion-label>{{s.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+</ion-content>

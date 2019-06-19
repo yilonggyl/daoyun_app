@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>返回
+      </ion-button>
+    </ion-buttons>
+    <ion-title>新增班课</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="onSave()" #addCourseForm="ngForm" novalidate>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label position="fixed">班课名称</ion-label>
+        <ion-input name="name" type="text" placeholder="班课名称" [(ngModel)]="course.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">教师名称</ion-label>
+        <ion-input name="teacher" type="text" placeholder="教师名称" [(ngModel)]="course.teacher"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">描述</ion-label>
+        <ion-input name="desc" type="text" placeholder="班课描述" [(ngModel)]="course.desc"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">限选人数</ion-label>
+        <ion-input name="maxNum" type="number" placeholder="最大限选人数" [(ngModel)]="course.maxNum"></ion-input>
+      </ion-item>
+      <div padding-horizontal>
+        <ion-button type="submit" expand="full" color="primary" [disabled]="addCourseForm.invalid">保存</ion-button>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

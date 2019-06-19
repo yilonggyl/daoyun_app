@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>返回
+      </ion-button>
+    </ion-buttons>
+    <ion-title>修改库存</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <div style="margin: 15px 15px 30px 15px;">
+    <ion-row>
+      <ion-col style="padding: 0;">
+        <ion-button expand="full" color="primary" fill="outline" (click)="toRight()" style="border-left:solid 1px;" *ngIf="nowIndex != 0">入库</ion-button>
+        <ion-button expand="full" color="primary" (click)="toRight()" *ngIf="nowIndex == 0">入库</ion-button>
+      </ion-col>
+      <ion-col style="padding: 0;">
+        <ion-button expand="full" color="primary" fill="outline" (click)="toLeft()" style="border-right:solid 1px;" *ngIf="nowIndex == 0">出库</ion-button>
+        <ion-button expand="full" color="primary"(click)="toLeft()" *ngIf="nowIndex != 0">出库</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-slides #inOutSlides>
+    <ion-slide>
+      <form (ngSubmit)="onInStock()" #inStockForm="ngForm" style="width: 100%;">
+        <ion-list padding-right no-margin>
+          <ion-item>
+            <ion-label position="fixed">入库数量</ion-label>
+            <ion-input name="stock" type="text" [(ngModel)]="in" required></ion-input>
+          </ion-item>
+          <ion-item margin-top>
+            <ion-label position="fixed">备注</ion-label>
+            <ion-input name="note" type="text" [(ngModel)]="inNote"></ion-input>
+          </ion-item>
+          <ion-item lines="none"></ion-item>
+          <ion-item lines="none">
+            <ion-note slot="end">当前库存：{{product.stock}}件</ion-note>
+          </ion-item>
+          <ion-button type="submit" expand="full" color="primary" [disabled]="inStockForm.invalid">确认入库</ion-button>
+        </ion-list>
+      </form>
+    </ion-slide>
+    <ion-slide>
+      <form (ngSubmit)="onOutStock()" #outStockForm="ngForm" style="width: 100%;">
+        <ion-list padding-right no-margin>
+          <ion-item>
+            <ion-label position="fixed">出库数量</ion-label>
+            <ion-input name="stock" type="text" [(ngModel)]="out" required  #stock="ngModel"></ion-input>
+          </ion-item>
+          <ion-item margin-top>
+            <ion-label position="fixed">备注</ion-label>
+            <ion-input name="note" type="text" [(ngModel)]="inNote"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-text text-left color="danger" *ngIf="(out > product.stock)">
+              <p padding-start>出库数量不能大于库存！</p>
+            </ion-text>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-note slot="end">当前库存：{{product.stock}}件</ion-note>
+          </ion-item>
+          <ion-button type="submit" expand="full" color="primary" [disabled]="outStockForm.invalid || out > product.stock">确认出库</ion-button>
+        </ion-list>
+      </form>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
